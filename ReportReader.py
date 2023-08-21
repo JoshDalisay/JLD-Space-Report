@@ -30,15 +30,20 @@ def ReadReport():
 
     # Display all the computers that are under 20 size 
     print("\n\n")
-    with open(r'\\log-s8mo-1fs\groups\IT Support\Windows 10\Scripts\results.txt', 'w') as file_object:
-        for x in CategoriesSplit:
-            # y is the Storage size left on the computer.
-            y = float(x[1])
-            # Change the value that you want less than 'y' for the size you are looking for the drive to have left.
-            # Print the names of the computers onto the console.
-            if y < 20:
-                print(x)
-                file_object.write(str(x))
+    with open(r'\\log-s8mo-1fs\groups\IT Support\Windows 10\Scripts\results.txt', 'r+') as file_object:
+        content = file_object.read()
+        if len(content) == 0:
+            print('No computers are low on storage.')
+        else:
+            for x in CategoriesSplit:
+                # y is the Storage size left on the computer.
+                y = float(x[1])
+                # Change the value that you want less than 'y' for the size you are looking for the drive to have left.
+                # Print the names of the computers onto the console.
+                if y < 20:
+                    print(x)
+                    file_object.write(str(x))
 
 
     print("\n\n")
+
